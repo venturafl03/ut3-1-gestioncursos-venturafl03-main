@@ -1,11 +1,10 @@
 {% extends 'blog/base.html' %}
 
 {% block content %}
-<h1>Editar Curso: {{ curso.nombre }}</h1>
+<h1>Crear Estudiante</h1>
 <form method="POST">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">Guardar Cambios</button>
+    <button type="submit">Crear Estudiante</button>
 </form>
 {% endblock %}
-
