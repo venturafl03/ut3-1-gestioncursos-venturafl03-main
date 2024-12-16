@@ -4,7 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>{% block title %}Gestión de Cursos{% endblock %}</title>
+
 </head>
 <body>
     <header>
@@ -13,8 +15,7 @@
             <a href="{% url 'lista_cursos' %}">Cursos</a>
             <a href="{% url 'lista_estudiantes' %}">Estudiantes</a>
             <a href="{% url 'lista_inscripciones' %}">Inscripciones</a>
-            <a href="{% url 'crear_curso' %}">Crear Curso</a> 
-            <a href="{% url 'crear_estudiante' %}">Crear Estudiante</a>
+          
         </nav>
     </header>
     <main>

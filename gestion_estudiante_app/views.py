@@ -53,6 +53,7 @@ def crear_estudiante(request):
 
 def lista_estudiantes(request):
     estudiantes = Estudiante.objects.all()
+    print(estudiantes)
     return render(request, 'blog/lista_estudiante.html', {'estudiantes': estudiantes})
 
 def editar_estudiante(request, estudiante_id):

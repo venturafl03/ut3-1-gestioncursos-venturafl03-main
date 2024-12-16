@@ -1,5 +1,3 @@
-# gestion_estudiante_app/forms.py
-
 from django import forms
 from .models import Curso, Estudiante, Inscripcion
 from django.core.exceptions import ValidationError
@@ -47,10 +45,9 @@ class InscripcionForm(forms.ModelForm):
         fields = ['estudiante', 'curso', 'fecha_inscripcion']
 
     def clean(self):
-        cleaned_data = super().clean()
-        fecha_inscripcion = cleaned_data.get('fecha_inscripcion')
-        curso = cleaned_data.get('curso')
-        estudiante = cleaned_data.get('estudiante')
+        fecha_inscripcion = self.cleaned_data.get('fecha_inscripcion')
+        curso = self.cleaned_data.get('curso')
+        estudiante = self.cleaned_data.get('estudiante')
 
         if fecha_inscripcion > date.today():
             raise ValidationError("La fecha de inscripción no puede ser posterior al día de hoy.")

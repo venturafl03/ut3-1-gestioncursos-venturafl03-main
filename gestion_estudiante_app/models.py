@@ -20,7 +20,7 @@ class Curso(models.Model):
 class Estudiante(models.Model):
     nombre = models.CharField(max_length=100)
     email = models.EmailField(max_length=50, unique=True)
-    fecha_nacimiento = models.DateField()
+    fecha_nacimiento = models.DateField(null=False)
 
     def clean(self):
         if self.fecha_nacimiento > date.today():
@@ -36,17 +36,17 @@ class Estudiante(models.Model):
 class Inscripcion(models.Model):
     estudiante = models.ForeignKey('Estudiante', on_delete=models.CASCADE)
     curso = models.ForeignKey('Curso', on_delete=models.CASCADE)  
-    fecha_inscripcion = models.DateField() 
+    fecha_inscripcion = models.DateField(null=False) 
 
     def clean(self):
         if self.fecha_inscripcion > date.today():
             raise ValidationError("La fecha de inscripción no puede ser posterior al día actual.")
         
-        if self.fecha_inscripcion > self.curso.fecha_fin:
-            raise ValidationError("El estudiante no puede inscribirse en un curso que ya ha finalizado.")
+    #     if self.fecha_inscripcion > self.curso.fecha_fin:
+    #         raise ValidationError("El estudiante no puede inscribirse en un curso que ya ha finalizado.")
         
-        if self.curso.fecha_fin < date.today():
-            raise ValidationError("El curso ya ha finalizado, no es posible inscribir al estudiante.")
+    #     if self.curso.fecha_fin < date.today():
+    #         raise ValidationError("El curso ya ha finalizado, no es posible inscribir al estudiante.")
 
     def __str__(self):
         return f"{self.estudiante.nombre} inscrito en {self.curso.nombre}"
